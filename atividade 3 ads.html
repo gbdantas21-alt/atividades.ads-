@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mural de Vagas de Estágio</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--tx:#1b1f2a;--mut:#667085;--pri:#4f46e5;--pri-tx:#fff;--bd:#e4e7ee;--hero:#4f46e5;--hero2:#7c3aed;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1220;--card:#181c2f;--tx:#eef0f7;--mut:#9aa3b8;--pri:#818cf8;--pri-tx:#0f1220;--bd:#2a3050;--hero:#312e81;--hero2:#5b21b6}}
+:root[data-theme="dark"]{--bg:#0f1220;--card:#181c2f;--tx:#eef0f7;--mut:#9aa3b8;--pri:#818cf8;--pri-tx:#0f1220;--bd:#2a3050;--hero:#312e81;--hero2:#5b21b6}
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.hero{background:linear-gradient(135deg,var(--hero),var(--hero2));color:#fff;padding:56px 20px 64px;text-align:center}
+.hero h1{margin:0 0 10px;font-size:clamp(28px,6vw,44px)}
+.hero p{margin:0 auto 22px;max-width:560px;opacity:.92}
+.btn{display:inline-block;background:var(--pri);color:var(--pri-tx);border:0;border-radius:10px;padding:12px 20px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none}
+.hero .btn{background:#fff;color:#4338ca}
+main{max-width:980px;margin:0 auto;padding:0 16px 48px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;margin-top:-28px;margin-bottom:24px;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.card.t{margin-top:0}
+h2{margin:0 0 14px;font-size:22px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:flex;flex-direction:column;font-size:13px;color:var(--mut);gap:4px}
+.full{grid-column:1/-1}
+input,select,textarea{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:10px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--pri);outline-offset:0}
+.stats{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.stats input{flex:1;min-width:180px}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--bd);font-size:14px;vertical-align:top}
+th{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.tag{display:inline-block;background:var(--bg);border:1px solid var(--bd);border-radius:999px;padding:2px 10px;font-size:12px}
+.del{background:none;border:0;color:#dc2626;cursor:pointer;font-size:13px}
+.empty{text-align:center;color:var(--mut);padding:24px}
+.ok{display:none;color:#16a34a;font-weight:600;margin-top:8px}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:0 16px 32px}
+@media(max-width:640px){form{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>🎓 Mural de Vagas de Estágio</h1>
+  <p>Sua empresa tem uma oportunidade? Cadastre a vaga em um minuto e ela aparece na hora na tabela de divulgação.</p>
+  <a class="btn" href="#cadastro">Divulgar uma vaga</a>
+</header>
+<main>
+  <section class="card" id="cadastro">
+    <h2>Cadastrar vaga</h2>
+    <form id="f">
+      <label>Empresa*<input name="empresa" required maxlength="60" placeholder="Nome da empresa"></label>
+      <label>Título da vaga*<input name="titulo" required maxlength="70" placeholder="Ex.: Estágio em Marketing"></label>
+      <label>Área*
+        <select name="area" required>
+          <option value="">Selecione</option><option>Tecnologia</option><option>Marketing</option><option>Administração</option><option>Engenharia</option><option>Design</option><option>Direito</option><option>Saúde</option><option>Outra</option>
+        </select>
+      </label>
+      <label>Modalidade*
+        <select name="modalidade" required><option>Presencial</option><option>Híbrido</option><option>Remoto</option></select>
+      </label>
+      <label>Cidade<input name="cidade" maxlength="50" placeholder="Ex.: São Paulo - SP"></label>
+      <label>Bolsa-auxílio<input name="bolsa" maxlength="30" placeholder="Ex.: R$ 1.500"></label>
+      <label class="full">Contato (e-mail ou link)*<input name="contato" required maxlength="100" placeholder="rh@empresa.com"></label>
+      <label class="full">Descrição<textarea name="desc" rows="3" maxlength="300" placeholder="Requisitos, carga horária, benefícios..."></textarea></label>
+      <div class="full"><button class="btn" type="submit">Publicar vaga</button><div class="ok" id="ok">✓ Vaga publicada na tabela!</div></div>
+    </form>
+  </section>
+
+  <section class="card t" id="vagas">
+    <h2>Vagas divulgadas <span class="tag" id="n">0</span></h2>
+    <div class="stats"><input id="q" type="search" placeholder="Buscar por empresa, vaga, área ou cidade..."></div>
+    <div class="wrap">
+      <table>
+        <thead><tr><th>Empresa</th><th>Vaga</th><th>Área</th><th>Local</th><th>Bolsa</th><th>Contato</th><th></th></tr></thead>
+        <tbody id="tb"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<footer>As vagas ficam salvas neste navegador.</footer>
+<script>
+const KEY="vagas-estagio-v1";
+const seed=[
+ {id:1,empresa:"TechNova",titulo:"Estágio em Desenvolvimento Web",area:"Tecnologia",modalidade:"Remoto",cidade:"—",bolsa:"R$ 1.800",contato:"rh@technova.com",desc:"30h semanais"},
+ {id:2,empresa:"Studio Aurora",titulo:"Estágio em Design Gráfico",area:"Design",modalidade:"Híbrido",cidade:"Belo Horizonte - MG",bolsa:"R$ 1.400",contato:"vagas@aurora.com",desc:"Portfólio desejável"}
+];
+let vagas;
+try{vagas=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){vagas=null}
+if(!Array.isArray(vagas))vagas=seed;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(vagas))}catch(e){}}
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const tb=document.getElementById("tb"),q=document.getElementById("q");
+function contato(c){return /^https?:\/\//i.test(c)?`<a href="${esc(c)}" target="_blank" rel="noopener">Candidatar-se</a>`:/@/.test(c)?`<a href="mailto:${esc(c)}">${esc(c)}</a>`:esc(c)}
+function render(){
+  const t=q.value.trim().toLowerCase();
+  const l=vagas.filter(v=>!t||[v.empresa,v.titulo,v.area,v.cidade].join(" ").toLowerCase().includes(t));
+  document.getElementById("n").textContent=vagas.length;
+  tb.innerHTML=l.length?l.map(v=>`<tr><td><b>${esc(v.empresa)}</b></td><td>${esc(v.titulo)}<div style="color:var(--mut);font-size:12px">${esc(v.desc)}</div></td><td><span class="tag">${esc(v.area)}</span></td><td>${esc(v.modalidade)}${v.cidade?"<br><small>"+esc(v.cidade)+"</small>":""}</td><td>${esc(v.bolsa)||"—"}</td><td>${contato(v.contato)}</td><td><button class="del" data-id="${v.id}" title="Remover">Remover</button></td></tr>`).join(""):`<tr><td colspan="7" class="empty">Nenhuma vaga encontrada.</td></tr>`;
+}
+document.getElementById("f").addEventListener("submit",e=>{
+  e.preventDefault();
+  const d=Object.fromEntries(new FormData(e.target));
+  vagas.unshift({id:Date.now(),empresa:d.empresa,titulo:d.titulo,area:d.area,modalidade:d.modalidade,cidade:d.cidade,bolsa:d.bolsa,contato:d.contato,desc:d.desc});
+  save();e.target.reset();q.value="";render();
+  const ok=document.getElementById("ok");ok.style.display="block";setTimeout(()=>ok.style.display="none",2500);
+  document.getElementById("vagas").scrollIntoView({behavior:"smooth"});
+});
+tb.addEventListener("click",e=>{const b=e.target.closest(".del");if(!b)return;vagas=vagas.filter(v=>String(v.id)!==b.dataset.id);save();render()});
+q.addEventListener("input",render);
+render();
+</script>
+</body>
+</html>

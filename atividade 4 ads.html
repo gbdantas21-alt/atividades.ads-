@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AutoPrime — Seu próximo carro</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--tx:#14171f;--mut:#5d6575;--bd:#e3e6ec;--acc:#e11d48;--acc-tx:#fff;--hero:#e9ecf2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0d12;--card:#151922;--tx:#f1f3f8;--mut:#9aa3b5;--bd:#262c3a;--acc:#fb7185;--acc-tx:#0b0d12;--hero:#11141c}}
+:root[data-theme="dark"]{--bg:#0b0d12;--card:#151922;--tx:#f1f3f8;--mut:#9aa3b5;--bd:#262c3a;--acc:#fb7185;--acc-tx:#0b0d12;--hero:#11141c}
+*{box-sizing:border-box}
+html{color-scheme:light dark;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;transition:background .3s,color .3s}
+a{color:inherit}
+nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--bd);z-index:5}
+.logo{font-weight:800;font-size:20px;letter-spacing:.02em}.logo span{color:var(--acc)}
+.links{display:flex;gap:18px;align-items:center}
+.links a{text-decoration:none;font-size:14px;color:var(--mut)}
+.tg{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer}
+.btn{display:inline-block;background:var(--acc);color:var(--acc-tx);border:0;border-radius:10px;padding:13px 22px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none}
+.hero{background:var(--hero);text-align:center;padding:56px 20px 40px;transition:background .3s}
+.hero h1{margin:0 0 10px;font-size:clamp(30px,7vw,52px);line-height:1.1}
+.hero p{margin:0 auto 22px;max-width:520px;color:var(--mut)}
+.hero svg{width:min(560px,92%);margin-top:28px;color:var(--acc)}
+section{max-width:1000px;margin:0 auto;padding:48px 16px}
+h2{text-align:center;margin:0 0 24px;font-size:28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;transition:background .3s}
+.card svg{width:100%;color:var(--acc);opacity:.9}
+.card h3{margin:8px 0 2px}.card small{color:var(--mut)}
+.price{font-size:22px;font-weight:800;margin:8px 0}
+.feat{text-align:center}.feat b{display:block;font-size:30px}
+form{max-width:480px;margin:0 auto;display:grid;gap:12px}
+input,select{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px}
+#msg{text-align:center;color:#16a34a;font-weight:600;min-height:24px}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:24px 16px 40px;border-top:1px solid var(--bd)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="car" viewBox="0 0 400 140"><path fill="currentColor" d="M20 98c0-14 8-22 24-26l52-12c14-18 30-28 52-28h92c22 0 40 10 56 30l44 10c22 5 34 12 34 26v8c0 6-4 10-10 10h-18a40 40 0 0 0-80 0H144a40 40 0 0 0-80 0H30c-6 0-10-4-10-10z"/><path fill="var(--hero)" d="M130 62c10-12 20-18 36-18h38v18zM216 44h30c14 2 26 10 36 18h-66z"/><g fill="var(--tx)"><circle cx="104" cy="110" r="26"/><circle cx="296" cy="110" r="26"/></g><g fill="var(--bg)"><circle cx="104" cy="110" r="11"/><circle cx="296" cy="110" r="11"/></g></symbol></svg>
+
+<nav>
+  <div class="logo">Auto<span>Prime</span></div>
+  <div class="links"><a href="#carros">Carros</a><a href="#contato">Contato</a>
+  <button class="tg" id="tg" type="button" aria-label="Alternar tema">🌙 Dark</button></div>
+</nav>
+
+<header class="hero">
+  <h1>Encontre o carro<br>dos seus sonhos</h1>
+  <p>Seminovos revisados, com garantia e financiamento facilitado. Agende um test drive hoje.</p>
+  <a class="btn" href="#contato">Agendar test drive</a>
+  <svg viewBox="0 0 400 140"><use href="#car"/></svg>
+</header>
+
+<section id="carros">
+  <h2>Destaques</h2>
+  <div class="grid">
+    <div class="card"><svg viewBox="0 0 400 140"><use href="#car"/></svg><h3>Sedã Executivo</h3><small>2023 • 18.000 km • Automático</small><div class="price">R$ 129.900</div><a class="btn" href="#contato">Tenho interesse</a></div>
+    <div class="card"><svg viewBox="0 0 400 140"><use href="#car"/></svg><h3>SUV Aventura</h3><small>2022 • 32.000 km • Flex</small><div class="price">R$ 149.900</div><a class="btn" href="#contato">Tenho interesse</a></div>
+    <div class="card"><svg viewBox="0 0 400 140"><use href="#car"/></svg><h3>Hatch Urbano</h3><small>2021 • 41.000 km • Manual</small><div class="price">R$ 64.900</div><a class="btn" href="#contato">Tenho interesse</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="grid">
+    <div class="feat"><b>✔ 100%</b>Revisados</div>
+    <div class="feat"><b>12x</b>Sem juros*</div>
+    <div class="feat"><b>1 ano</b>De garantia</div>
+  </div>
+</section>
+
+<section id="contato">
+  <h2>Fale com a gente</h2>
+  <form id="f">
+    <input required placeholder="Seu nome" aria-label="Nome">
+    <input required type="tel" placeholder="WhatsApp" aria-label="WhatsApp">
+    <select aria-label="Carro"><option>Sedã Executivo</option><option>SUV Aventura</option><option>Hatch Urbano</option></select>
+    <button class="btn" type="submit">Quero uma proposta</button>
+    <div id="msg"></div>
+  </form>
+</section>
+<footer>© 2026 AutoPrime • *Sujeito a análise de crédito</footer>
+
+<script>
+const r=document.documentElement,b=document.getElementById("tg");
+let t=null;try{t=localStorage.getItem("tema")}catch(e){}
+if(!t)t=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";
+function set(x){r.setAttribute("data-theme",x);b.textContent=x==="dark"?"☀️ Claro":"🌙 Dark";try{localStorage.setItem("tema",x)}catch(e){}}
+set(t);
+b.onclick=()=>set(r.getAttribute("data-theme")==="dark"?"light":"dark");
+document.getElementById("f").onsubmit=e=>{e.preventDefault();document.getElementById("msg").textContent="✓ Recebemos! Entraremos em contato.";e.target.reset()};
+</script>
+</body>
+</html>
